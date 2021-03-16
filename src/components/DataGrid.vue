@@ -1,12 +1,19 @@
 <template>
   <div>
+    <div class="grid">
+      <div v-for="col in colHeaders" :key="col">{{ col }}</div>
+    </div>
+    <div v-for="value in rowData" :key="value.id">
+      <span v-for="item in value" :key="item">{{ item }}</span>
+    </div>
+
     <table>
       <th class="colHeader" v-for="col in colHeaders" :key="col">
         {{ col }}
       </th>
       <tbody>
-        <tr v-for="value in rowData" :key="value.id">
-          <td class="tdGrid" v-for="item in value" :key="item">{{ item }}</td>
+        <tr v-for="item in rowData" :key="item.id">
+          <td class="tdGrid" v-for="value in item" :key="value">{{ value }}</td>
         </tr>
       </tbody>
     </table>
@@ -25,19 +32,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+table {
+  table-layout: fixed;
+  width: 300px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+th {
+  text-align: left;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+.grid {
+  display: grid;
+  grid-template-columns: 120px 500px;
 }
 
 .colHeaders {
@@ -59,5 +64,6 @@ a {
 
 .tdGrid {
   text-align: left;
+  width: 25%;
 }
 </style>
