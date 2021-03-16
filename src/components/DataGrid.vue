@@ -1,11 +1,15 @@
 <template>
- <div>
-    <ul>
-      <li v-for="col in colHeaders" :key="col">{{ col }}</li>
-    </ul>
-    <ul>
-      <li style="display:block" v-for="row in rowData" :key="row.id">{{ row.id }}</li>
-    </ul>
+  <div>
+    <table>
+      <th class="colHeader" v-for="col in colHeaders" :key="col">
+        {{ col }}
+      </th>
+      <tbody>
+        <tr v-for="value in rowData" :key="value.id">
+          <td class="tdGrid" v-for="item in value" :key="item">{{ item }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -14,8 +18,8 @@ export default {
   name: "DataGrid",
   props: {
     colHeaders: Array,
-    rowData: Array
-  }
+    rowData: Array,
+  },
 };
 </script>
 
@@ -34,5 +38,26 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.colHeaders {
+  display: flex;
+}
+
+.colHeader {
+  margin-left: 20px;
+}
+
+.rows {
+  display: flex;
+}
+
+.row {
+  display: flex;
+  margin-right: 20px;
+}
+
+.tdGrid {
+  text-align: left;
 }
 </style>
